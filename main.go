@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	// "github.com/ajay-kumar-ks/gin-test/apis"
+	"github.com/ajay-kumar-ks/gin-test/apis"
 	"github.com/gin-gonic/gin"
 )
 
