@@ -1,6 +1,12 @@
 package managesrs
 
-import "github.com/ajay-kumar-ks/gin-test/models"
+import (
+	"errors"
+
+	"github.com/ajay-kumar-ks/gin-test/common"
+	"github.com/ajay-kumar-ks/gin-test/database"
+	"github.com/ajay-kumar-ks/gin-test/models"
+)
 
 type UserManager struct {
 }
@@ -10,7 +16,12 @@ func NewUserManager() *UserManager{
 
 }
 
-func (userMgr *UserManager) Create(user *models.User) (*models.User, error){
+func (userMgr *UserManager) Create(userData *common.UserCreationInput) (*models.User, error){
 
-	return nil, nil
+	newUser := &models.User{FullName: userData.FullName, Email: userData.Email}
+	database.DB.Create(newUser)
+	if newUser.ID == 0 {
+		return nil, errors.New("failed to create user")
+	}
+	return newUser, nil
 }

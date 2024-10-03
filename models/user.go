@@ -1,7 +1,9 @@
 package models
 
-type User struct{
+import "gorm.io/gorm"
+
+type User struct {
+	gorm.Model
 	FullName string
-	Email string
-	
+	Email    string
 }
